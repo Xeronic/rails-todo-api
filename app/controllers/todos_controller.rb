@@ -3,7 +3,13 @@ class TodosController < ApplicationController
     
     def index
       # get current user todos
-      @todos = current_user.todos
+      todos = current_user.todos
+      @todos = []
+      todos.each do |todo|
+        t = { id: todo.id, title: todo.title, items: todo.items }
+  
+        @todos << t
+      end 
       json_response(@todos)
     end
     # [...]
